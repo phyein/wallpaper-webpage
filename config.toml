@@ -1,0 +1,17 @@
+# Absolute location of project root folder (What folder is this file in?)
+root = ''
+
+# Relative location of gecko browser engine.
+# This was developed using geckodriver version v0.32.1.
+# For different version, change this to point to the correct executable.
+gecko_rel_path = 'geckodriver-v0.32.1-win64\geckodriver.exe'
+
+# Absolute location of output folder. Must have write access.
+output = ''
+
+# Enter the name and corresponding link for each status page.
+# Use underscores instead of spaces in the name of each area.
+# To exclude an entry, comment it out using `#`.
+[pages]
+    google = 'https://www.google.com/'
+    bing = 'https://www.bing.com/'
