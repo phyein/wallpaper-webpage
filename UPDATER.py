@@ -14,23 +14,17 @@ from shutil import rmtree
 import time
 import tomllib as toml
 
-def toml_load(filename:str) -> dict:
-    '''Load TOML configuration file.'''
-
-    with open(filename, mode='rb') as file:
-        conf = toml.load(file)
-
-    return conf
 
 def load_config() -> tuple:
     '''Load configurations.'''
 
-    # load configuration files
-    conf = toml_load('config.toml')
-    log_conf = toml_load('config_log.toml')
+    with open('config_log.toml', mode='rb') as file:
+        log_conf = toml.load(file)
 
-    # setup logger
     logging.config.dictConfig(log_conf)
+
+    with open('config.toml', mode='rb') as file:
+        conf = toml.load(file)
 
     # Unpack configurations. Generate destination path and file names.
     root, out, pages = conf['root'], conf['output'], conf['pages']
@@ -76,14 +70,12 @@ def get_screenshots() -> None:
             area, link, path = areas[i], links[i], paths[i]
             mkdir(path)
 
-            # get screenshots
             try:
                 driver.get(link)
                 log.info(f'Success fetch: {area}')
             except:
                 log.error(f'Failed fetch: {area}')
 
-            # save screenshots
             try:
                 # two images needed to make slideshow background switch
                 driver.save_screenshot(f'{path}\\{area}.png')
@@ -94,12 +86,12 @@ def get_screenshots() -> None:
                 log.error(f'Failed save: {area}')
 
 def run_schedule() -> None:
-    '''Main loop. Execute for direct module call but not import.'''
+    '''Main func. Execute for direct module call but not import.'''
 
     # queue jobs in scheduler every 10 minutes
     for i in range(6):
-        # schedule during 11th minute to give webpage time to update on the 10th
-        minute = f'{i}1:00'
+        # schedule during N2nd minute to give webpage time to update on the N0th
+        minute = f'{i}2:00'
         schedule.every().hour.at(minute).do(get_screenshots)
 
     # run scheduled tasks indefinitely
