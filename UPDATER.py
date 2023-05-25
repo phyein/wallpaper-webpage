@@ -88,6 +88,9 @@ def get_screenshots() -> None:
 def run_schedule() -> None:
     '''Main func. Execute for direct module call but not import.'''
 
+    # Run on start
+    get_screenshots()
+
     # queue jobs in scheduler every 10 minutes
     for i in range(6):
         # schedule during N2nd minute to give webpage time to update on the N0th
