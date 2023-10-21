@@ -22,11 +22,9 @@ This program saves screenshots of a webpage on a schedule. A user's operating sy
 
 3. Edit **config.toml** and set the following:
    
-   - **root**: absolute path of the project folder.
+   - **gecko_relative_path**: path of the gecko driver relative to project folder.
    
-   - **gecko_rel_path**: path of the gecko driver relative to project folder.
-   
-   - **output**: absolute path of output folder (user choice). If blank, output folder will generate in root.
+   - **output_folder**: absolute path of output folder (user choice). If blank, output folder will generate in root.
 
 4. Rename the project folder to whatever is preferred.
 
@@ -118,7 +116,7 @@ Configuration file changes may be made during execution (without restarting). Ke
 
 3. Open **config.toml**.
 
-4. Edit the variable **gecko_rel_path** so that it matches the path to the new GeckoDriver executable.
+4. Edit the variable **gecko_relative_path** so that it matches the path to the new GeckoDriver executable.
 
 ### Logging
 
@@ -133,6 +131,14 @@ The logger may be configured by editing **config_log.toml**.
 ---
 
 ## Notes
+
+### Resource Useage
+
+Program uses 0% CPU and 8-30 MB memory.
+
+### How it Works
+
+An automation testing webdriver is used to get screenshots of each desired webpage on a schedule.
 
 ### Update Delay
 
