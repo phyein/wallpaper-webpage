@@ -15,8 +15,7 @@ import time
 import tomllib as toml
 
 
-def run_schedule() -> None:
-    '''Main func. Execute for direct module call but not import.'''
+def main() -> None:
 
     # Run on start
     get_screenshots()
@@ -49,13 +48,14 @@ def load_config() -> tuple:
     all_path = Path(out, 'all')
     loc_gecko = Path(loc_rel_gecko)
 
-    return areas, links, paths, all_path, loc_gecko
+    return out, areas, links, paths, all_path, loc_gecko
 
 def get_screenshots() -> None:
     '''Get screenshots using selenium webdriver.'''
 
     # re-load config files to adapt to changes
-    areas, links, paths, all_path, loc_gecko = load_config()
+    out, areas, links, paths, all_path, loc_gecko = load_config()
+    while not out.exists(): time.sleep(59)
     if all_path.exists(): rmtree(all_path)
     all_path.mkdir(parentns=True, exist_ok=True)
 
